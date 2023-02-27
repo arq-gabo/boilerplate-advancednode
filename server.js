@@ -27,6 +27,17 @@ app.use(
 passport.initialize();
 passport.session();
 
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+
+passport.deserializeUser((id, done) => {
+  // myDataBase.findOne({ _id: new ObjectID(id) }, (err, doc) => {
+  //   done(null, null);
+  // });
+  done(null, null);
+});
+
 //Integrate PUG
 app.set("views", "./views/pug");
 app.set("view engine", "pug");
