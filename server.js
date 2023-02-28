@@ -25,8 +25,8 @@ app.use(
   })
 );
 
-passport.initialize();
-passport.session();
+app.use(passport.initialize());
+app.use(passport.session());
 
 fccTesting(app); //For FCC testing purposes
 app.use("/public", express.static(process.cwd() + "/public"));
@@ -64,9 +64,9 @@ myDB(async (client) => {
   });
 });
 
-app.route("/").get((req, res) => {
-  res.render("index", { title: "Hello", message: "Please log in" });
-});
+// app.route("/").get((req, res) => {
+//   res.render("index", { title: "Hello", message: "Please log in" });
+// });
 
 // Create Server
 const PORT = process.env.PORT || 3000;
