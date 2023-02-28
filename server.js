@@ -37,16 +37,13 @@ app.use(express.urlencoded({ extended: true }));
 myDB(async (client) => {
   const myDataBase = await client.db("database").collection("users");
 
-  // Be sure to change the title
   app.route("/").get((req, res) => {
-    // Change the response to render the Pug template
     res.render("index", {
       title: "Connected to Database",
-      message: "Please login",
+      message: "Please log in",
     });
   });
 
-  // Serialization and deserialization here...
   passport.serializeUser((user, done) => {
     done(null, user._id);
   });
@@ -56,8 +53,6 @@ myDB(async (client) => {
       done(null, doc);
     });
   });
-
-  // Be sure to add this...
 }).catch((e) => {
   app.route("/").get((req, res) => {
     res.render("index", { title: e, message: "Unable to connect to database" });
