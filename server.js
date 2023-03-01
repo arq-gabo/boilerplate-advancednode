@@ -86,12 +86,12 @@ myDB(async (client) => {
   });
 });
 
-const ensureAuthenticated = (req, res, next) => {
+function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
   res.redirect("/");
-};
+}
 
 // Create Server
 const PORT = process.env.PORT || 3000;
