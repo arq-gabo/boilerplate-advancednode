@@ -55,6 +55,6 @@ myDB(async (client) => {
 
 // Create Server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+http.listen(PORT, () => {
   console.log("Listening on port " + PORT);
 });
