@@ -12,6 +12,9 @@ const auth = require("./auth");
 
 const app = express();
 
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
+
 //Integrate PUG
 app.set("views", "./views/pug");
 app.set("view engine", "pug");
@@ -40,6 +43,10 @@ myDB(async (client) => {
 
   routes(app, myDataBase);
   auth(app, myDataBase);
+
+  io.on("connection", (socket) => {
+    console.log("A user has connected");
+  });
 }).catch((e) => {
   app.route("/").get((req, res) => {
     res.render("index", { title: e, message: "Unable to connect to database" });

@@ -70,7 +70,8 @@ module.exports = function (app, myDataBase) {
     .get(
       passport.authenticate("github", { failureRedirect: "/" }),
       (req, res) => {
-        res.redirect("/profile");
+        req.session.user_id = req.user.id;
+        res.redirect("/chat");
       }
     );
 
