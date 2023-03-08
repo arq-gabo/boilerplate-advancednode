@@ -10,7 +10,10 @@ $(document).ready(function () {
     $("#messages").append($("<li>").html("<b>" + message + "</b>"));
   });
 
-  console.log("user " + socket.request.user.username + " connected");
+  socket.on("chat message", (data) => {
+    console.log("socket.on 1");
+    $("#messages").append($("<li>").text(`${data.username}: ${data.message}`));
+  });
 
   // Form submittion with new message in field with id 'm'
   $("form").submit(function () {
